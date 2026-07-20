@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PassOp — Contact Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; --card:#111827; --muted:#6b7280; --text:#e5e7eb; --accent:#22c55e; --ring:#94f2b3;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:linear-gradient(180deg,#0b1220 0%,#0b1220 40%,#0e1627 100%); color:var(--text)}
+    a{color:var(--text); text-decoration:none}
+    .container{max-width:1100px; margin:0 auto; padding:0 20px}
+    /* Header */
+    .nav{position:sticky; top:0; backdrop-filter:saturate(180%) blur(10px); background:rgba(11,18,32,.6); border-bottom:1px solid rgba(255,255,255,.06); z-index:20}
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .logo{font-weight:800; letter-spacing:.2px}
+    .logo .gt{color:var(--accent)}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; background:#0f1a2f; border:1px solid rgba(255,255,255,.08); font-size:12px; color:#cbd5e1}
+    .pill .dot{width:6px; height:6px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(34,197,94,.15)}
+    /* Hero */
+    .hero{padding:56px 0 28px}
+    .title{font-size:40px; line-height:1.05; margin:8px 0}
+    .subtitle{color:#cbd5e1; max-width:760px}
+    .badges{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px}
+    .badge{font-size:12px; color:#cbd5e1; padding:6px 10px; border:1px solid rgba(255,255,255,.08); background:#0f1a2f; border-radius:999px}
+    /* Grid */
+    .grid{display:grid; grid-template-columns:1.2fr .8fr; gap:22px; margin-top:28px}
+    @media (max-width: 920px){ .grid{grid-template-columns:1fr} }
+    .card{background:linear-gradient(180deg,#0f172a, #0b1220); border:1px solid rgba(255,255,255,.08); border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.35)}
+    .card h3{margin:0 0 10px}
+    .card-body{padding:20px}
+    /* Form */
+    form{display:grid; gap:14px}
+    label{font-size:13px; color:#cbd5e1}
+    .row{display:grid; gap:14px; grid-template-columns:1fr 1fr}
+    @media (max-width: 640px){ .row{grid-template-columns:1fr} }
+    .field{display:flex; flex-direction:column; gap:6px}
+    .input, .select, .textarea{
+      background:#0b1324; border:1px solid rgba(255,255,255,.08); color:var(--text);
+      border-radius:12px; padding:12px 14px; font:inherit; outline:none; transition:.2s border,.2s box-shadow
+    }
+    .textarea{min-height:140px; resize:vertical}
+    .input:focus, .select:focus, .textarea:focus{border-color:var(--accent); box-shadow:0 0 0 4px rgba(34,197,94,.15)}
+    .hint{font-size:12px; color:var(--muted)}
+    .cta{display:inline-flex; align-items:center; gap:10px; border:none; padding:12px 16px; border-radius:12px; background:var(--accent); color:#052814; font-weight:700; cursor:pointer}
+    .cta:focus{outline:4px solid rgba(34,197,94,.22)}
+    .muted{font-size:12px; color:#9ca3af}
+    /* Side column */
+    .stack{display:grid; gap:14px}
+    .info{display:flex; gap:12px; align-items:flex-start}
+    .icon{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:#0f1a2f; border:1px solid rgba(255,255,255,.08)}
+    .info h4{margin:0 0 4px}
+    .info p{margin:0; color:#cbd5e1; font-size:14px}
+    .link{display:inline-flex; gap:6px; align-items:center; font-weight:600}
+    .divider{height:1px; background:rgba(255,255,255,.08); margin:8px 0}
+    /* FAQ */
+    .faq{margin-top:22px}
+    .faq details{background:#0b1324; border:1px solid rgba(255,255,255,.08); border-radius:12px; padding:12px 14px}
+    .faq summary{cursor:pointer; list-style:none; font-weight:600}
+    .faq summary::-webkit-details-marker{display:none}
+    .faq p{color:#cbd5e1; margin:10px 0 0}
+    /* Footer */
+    footer{margin:36px 0 22px; color:#94a3b8; font-size:13px}
+    .footer-grid{display:grid; gap:10px; grid-template-columns:1fr auto}
+    @media (max-width:640px){.footer-grid{grid-template-columns:1fr}}
+    .mini{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .shield{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; background:#0f1a2f; border:1px solid rgba(255,255,255,.08); font-size:12px}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="logo" aria-label="PassOp logo">
+        <span class="gt">&lt;</span>PassOp<span class="gt">/&gt;</span>
+      </div>
+      <a class="pill" href="#contact">
+        <span class="dot" aria-hidden="true"></span>
+        Secure Support • 24×7
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <p class="pill" style="margin:0 0 10px 0">Contact Us</p>
+      <h1 class="title">We're here to help with <span style="color:var(--accent)">PassOp</span></h1>
+      <p class="subtitle">Questions about your vault, billing, or security? Reach out using the form and our support engineers will respond within one business day. For urgent account access issues, try the quick links on the right.</p>
+      <div class="badges" role="list" aria-label="security badges">
+        <span class="badge">End‑to‑End Encryption</span>
+        <span class="badge">Zero‑Knowledge Design</span>
+        <span class="badge">SOC2 Type I Ready</span>
+      </div>
+
+      <div class="grid" id="contact" aria-label="contact grid">
+        <!-- Contact Form Card -->
+        <div class="card">
+          <div class="card-body">
+            <h3>Send us a message</h3>
+            <p class="muted" style="margin:0 0 12px">We'll email you back at the address you provide.</p>
+            <form id="contactForm" novalidate>
+              <div class="row">
+                <div class="field">
+                  <label for="name">Full name</label>
+                  <input class="input" id="name" name="name" type="text" placeholder="Jane Doe" required />
+                  <span class="hint" id="nameHint"></span>
+                </div>
+                <div class="field">
+                  <label for="email">Email address</label>
+                  <input class="input" id="email" name="email" type="email" placeholder="you@domain.com" required />
+                  <span class="hint" id="emailHint"></span>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="field">
+                  <label for="category">Category</label>
+                  <select class="select" id="category" name="category" required>
+                    <option value="" disabled selected>Select a topic</option>
+                    <option>Account & Billing</option>
+                    <option>Import/Export</option>
+                    <option>Browser Extension</option>
+                    <option>Security Concern</option>
+                    <option>Feature Request</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label for="priority">Priority</label>
+                  <select class="select" id="priority" name="priority">
+                    <option>Normal</option>
+                    <option>High</option>
+                    <option>Urgent</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="subject">Subject</label>
+                <input class="input" id="subject" name="subject" type="text" placeholder="I can't access my vault" required />
+              </div>
+
+              <div class="field">
+                <label for="message">Message</label>
+                <textarea class="textarea" id="message" name="message" placeholder="Tell us what's going on…" required></textarea>
+              </div>
+
+              <div class="field" style="gap:10px">
+                <label style="display:flex; align-items:center; gap:10px">
+                  <input type="checkbox" id="consent" required />
+                  I agree to the PassOp <a href="#" class="link">Support Terms</a> and to be contacted by email.
+                </label>
+              </div>
+
+              <button class="cta" type="submit" aria-label="Submit contact form">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13"></path><path d="M22 2L15 22l-4-9-9-4 20-7z"></path></svg>
+                Send message
+              </button>
+              <p class="hint">By submitting, you'll receive a confirmation email with your ticket ID.</p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Quick help / Contacts Card -->
+        <aside class="stack">
+          <div class="card">
+            <div class="card-body">
+              <div class="info">
+                <div class="icon" aria-hidden="true">📧</div>
+                <div>
+                  <h4>Email</h4>
+                  <p>support@passop.app</p>
+                  <a class="link" href="mailto:support@passop.app">Open mail client →</a>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="info">
+                <div class="icon" aria-hidden="true">💬</div>
+                <div>
+                  <h4>Live chat</h4>
+                  <p>Weekdays 9:00–18:00 (IST)</p>
+                  <a class="link" href="#">Start a chat →</a>
+                </div>
+              </div>
+              <div class="divider"></div>
+              <div class="info">
+                <div class="icon" aria-hidden="true">📚</div>
+                <div>
+                  <h4>Docs & FAQ</h4>
+                  <p>Guides for setup, import, and recovery</p>
+                  <a class="link" href="#">Browse help center →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h3>FAQ</h3>
+              <div class="faq">
+                <details>
+                  <summary>How soon will I get a reply?</summary>
+                  <p>We respond within one business day. Urgent security issues are prioritized immediately.</p>
+                </details>
+                <details>
+                  <summary>I lost my master password. Can you reset it?</summary>
+                  <p>For your security, we can't recover or reset master passwords. Use your recovery options if enabled, such as account recovery keys or trusted devices.</p>
+                </details>
+                <details>
+                  <summary>Where do I report a vulnerability?</summary>
+                  <p>Please choose <b>Security Concern</b> in the form above or email <i>security@passop.app</i> with details and steps to reproduce.</p>
+                </details>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Trust strip -->
+      <div class="card" style="margin-top:22px">
+        <div class="card-body">
+          <div class="mini">
+            <span class="shield">🔐 AES‑256 Encryption</span>
+            <span class="shield">🛡️ Zero‑Knowledge</span>
+            <span class="shield">🔏 Private by Design</span>
+            <span class="shield">✅ 2FA Supported</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PassOp. All rights reserved.</div>
+      <div class="mini">
+        <a href="#">Status</a>
+        <a href="#">Privacy</a>
+        <a href="#">Security</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple client-side validation & demo submit
+    const f = document.getElementById('contactForm');
+    f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      // Basic validation
+      const name = f.name.value.trim();
+      const email = f.email.value.trim();
+      const subject = f.subject.value.trim();
+      const message = f.message.value.trim();
+      const emailHint = document.getElementById('emailHint');
+      const nameHint = document.getElementById('nameHint');
+      emailHint.textContent = nameHint.textContent = '';
+
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      if(!name) { nameHint.textContent = 'Please enter your name.'; return; }
+      if(!emailOk){ emailHint.textContent = 'Please enter a valid email address.'; return; }
+      if(!subject || !message){ alert('Please fill in subject and message.'); return; }
+      if(!f.consent.checked){ alert('Please agree to the Support Terms.'); return; }
+
+      // In production, send data via fetch() to your backend endpoint instead of alert
+      const payload = Object.fromEntries(new FormData(f).entries());
+      console.log('Submitting payload', payload);
+      alert('Thanks! Your message has been sent. We\'ll reply to ' + email + ' shortly.');
+      f.reset();
+    });
+  </script>
+</body>
+</html>

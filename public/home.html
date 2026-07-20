@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PassOp — Simple, Secure Password Manager</title>
+  <meta name="description" content="PassOp is a simple, secure password manager. Store, generate, and autofill strong passwords across your devices." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220;          /* deep navy */
+      --panel:#0f172a;       /* slate-900 */
+      --muted:#94a3b8;       /* slate-400 */
+      --text:#e2e8f0;        /* slate-200 */
+      --brand:#10b981;       /* emerald */
+      --brand-2:#22d3ee;     /* cyan */
+      --ring: rgba(16,185,129,.35);
+      --card:#0b1220;
+      --border:#1f2937;      /* gray-800 */
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Apple Color Emoji,Segoe UI Emoji; color:var(--text); background:radial-gradient(1200px 800px at 80% -10%, rgba(34,211,238,.15), transparent 60%), radial-gradient(900px 600px at -10% 10%, rgba(16,185,129,.12), transparent 60%), var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:1120px; margin:0 auto; padding:0 1.2rem}
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(180%) blur(8px); background:rgba(11,18,32,.65); border-bottom:1px solid var(--border);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:72px}
+    .brand{display:flex; align-items:center; gap:.6rem; font-weight:800; font-size:1.3rem}
+    .brand .chev{color:var(--brand)}
+    nav ul{display:flex; align-items:center; gap:1rem; list-style:none; margin:0; padding:0}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; border:1px solid var(--border); background:linear-gradient(180deg, #111827, #0b1220); color:var(--text); padding:.7rem 1rem; border-radius:999px; font-weight:600}
+    .btn:hover{border-color:#334155; box-shadow:0 0 0 4px var(--ring)}
+    .btn-primary{background:linear-gradient(90deg, var(--brand), var(--brand-2)); color:#081018; border:none}
+    .btn-primary:hover{filter:saturate(110%)}
+    .mobile-toggle{display:none; background:transparent; border:1px solid var(--border); width:42px; height:42px; border-radius:12px}
+
+    /* Hero */
+    .hero{position:relative; padding:72px 0 32px; overflow:hidden}
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:2rem; align-items:center}
+    .eyebrow{display:inline-block; background:rgba(16,185,129,.15); color:#bbf7d0; border:1px solid rgba(16,185,129,.35); padding:.35rem .6rem; border-radius:999px; font-size:.8rem; font-weight:600}
+    h1{font-size:clamp(2rem, 5vw, 3.2rem); line-height:1.1; margin:.8rem 0}
+    .lead{color:var(--muted); font-size:1.05rem}
+    .cta{display:flex; gap:.8rem; flex-wrap:wrap; margin-top:1.2rem}
+
+    .glass{
+      background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border:1px solid var(--border); border-radius:20px; padding:1rem; box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    .card{border:1px solid var(--border); border-radius:20px; padding:1.2rem; background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01))}
+
+    /* Features */
+    .section{padding:72px 0}
+    .grid{display:grid; gap:1rem}
+    .grid-3{grid-template-columns:repeat(3, minmax(0, 1fr))}
+    .kicker{color:var(--muted); text-transform:uppercase; letter-spacing:.16em; font-weight:700; font-size:.78rem}
+    .h2{font-size:clamp(1.4rem, 3.6vw, 2rem); margin:.4rem 0 1rem}
+    .feature{display:flex; gap:.9rem}
+    .icon{flex:0 0 44px; width:44px; height:44px; border-radius:12px; display:grid; place-items:center; background:radial-gradient(circle at 30% 20%, rgba(34,211,238,.35), rgba(16,185,129,.35)); border:1px solid rgba(34,211,238,.3)}
+
+    /* How it works */
+    .steps{display:grid; gap:1rem; grid-template-columns:repeat(3, minmax(0, 1fr))}
+    .step{position:relative; padding:1.2rem; border:1px dashed #334155; border-radius:16px; background:linear-gradient(180deg, rgba(2,6,23,.8), rgba(2,6,23,.6))}
+    .step span{position:absolute; inset:0; pointer-events:none; background: radial-gradient(600px 120px at 0% 0%, rgba(34,211,238,.08), transparent 40%)}
+
+    /* Footer */
+    footer{border-top:1px solid var(--border); padding:36px 0 56px; color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width: 960px){
+      .hero-grid{grid-template-columns:1fr}
+    }
+    @media (max-width: 720px){
+      nav ul{display:none}
+      .mobile-toggle{display:inline-grid; place-items:center}
+      .mobile-open nav ul{display:flex; position:absolute; top:72px; right:1rem; background:#0b1220; border:1px solid var(--border); padding:.6rem; border-radius:14px; flex-direction:column; gap:.4rem}
+      .steps{grid-template-columns:1fr}
+      .grid-3{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header id="top">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="PassOp Home">
+        <span class="chev">&lt;</span>PassOp<span class="chev">/&gt;</span>
+      </a>
+      <button class="mobile-toggle" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+      <nav>
+        <ul aria-label="Primary navigation">
+          <li><a class="btn" href="#features">Features</a></li>
+          <li><a class="btn" href="#how">How it works</a></li>
+          <li><a class="btn" href="#faq">FAQ</a></li>
+          
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Secure • Simple • Open</span>
+          <h1>PassOp — your home for strong, unique passwords</h1>
+          <p class="lead">Save, generate, and manage credentials with confidence. PassOp keeps your data encrypted locally and syncs only when <em>you</em> choose.</p>
+          <div class="cta">
+            
+            <a class="btn" href="#features">Explore Features</a>
+          </div>
+          <p class="lead" style="margin-top:.8rem">No credit card • Offline-first • Open standard crypto</p>
+        </div>
+        <div class="glass" aria-label="Demo preview" role="img">
+          <!-- Simple code-style preview block -->
+          <pre style="margin:0; padding:1rem; overflow:auto; line-height:1.5; color:#cbd5e1"><code>// Example entry
+{
+  "site": "github.com",
+  "username": "you@example.com",
+  "password": "••••••••••",
+  "created": "2025-08-16",
+  "notes": "2FA enabled"
+}
+
+// One-click actions
+//  ↳ Copy • Reveal • Edit • Delete
+          </code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="section">
+      <div class="container">
+        <p class="kicker">Why PassOp</p>
+        <h2 class="h2">Everything you expect from a modern password manager</h2>
+        <div class="grid grid-3">
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">🔐</div>
+            <div>
+              <h3>End‑to‑End Encryption</h3>
+              <p class="lead">Your vault is encrypted locally using strong, audited algorithms before anything leaves your device.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">⚡</div>
+            <div>
+              <h3>Fast & Lightweight</h3>
+              <p class="lead">Zero bloat. Instant search, quick copy, and keyboard shortcuts for power users.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">🧪</div>
+            <div>
+              <h3>Strong Generator</h3>
+              <p class="lead">Create unique passwords & passphrases with rules for length, symbols, and exclusions.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">📱</div>
+            <div>
+              <h3>Responsive by Design</h3>
+              <p class="lead">Works beautifully on phones, tablets, and desktops — no pinch‑zoom required.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">🛡️</div>
+            <div>
+              <h3>Zero‑Knowledge</h3>
+              <p class="lead">Only you know the master password. Recovery keys help you avoid lockout without revealing secrets.</p>
+            </div>
+          </div>
+          <div class="card feature">
+            <div class="icon" aria-hidden="true">🌐</div>
+            <div>
+              <h3>Import & Export</h3>
+              <p class="lead">Move data easily with CSV/JSON, and integrate with browser extensions (coming soon).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how" class="section" aria-labelledby="how-title">
+      <div class="container">
+        <p class="kicker">Get started in minutes</p>
+        <h2 id="how-title" class="h2">How PassOp works</h2>
+        <div class="steps">
+          <div class="step">
+            <span></span>
+            <h3>1. Create your vault</h3>
+            <p class="lead">Pick a strong master password. We derive a key using modern KDFs to encrypt everything on‑device.</p>
+          </div>
+          <div class="step">
+            <span></span>
+            <h3>2. Add your logins</h3>
+            <p class="lead">Save sites, usernames, and notes. Use the generator to craft unique credentials for each account.</p>
+          </div>
+          <div class="step">
+            <span></span>
+            <h3>3. Use anywhere</h3>
+            <p class="lead">Access on the web app or desktop build. Optional cloud sync keeps devices in step without sharing secrets.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Get Started / CTA -->
+    <section id="get-started" class="section">
+      <div class="container">
+        <div class="card" style="display:grid; gap:1rem; grid-template-columns: 1.2fr .8fr; align-items:center">
+          <div>
+            <h2 class="h2">Ready to try PassOp?</h2>
+            <p class="lead">Start with a local vault. You can import from CSV later and enable sync when you're comfortable.</p>
+            <div class="cta">
+              <a class="btn btn-primary" href="#" onclick="alert('Hook this to your app route or signup flow.'); return false;">Create Vault</a>
+              <a class="btn" href="https://github.com/topics/mini-project" target="_blank" rel="noopener">View Sample Projects</a>
+            </div>
+          </div>
+          <div class="glass">
+            <ul style="margin:0; padding-left:1.1rem">
+              <li>Unlimited entries</li>
+              <li>Offline‑first</li>
+              <li>Local encryption</li>
+              <li>Import/Export</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <div class="container">
+        <p class="kicker">FAQ</p>
+        <h2 class="h2">Questions, answered</h2>
+        <div class="grid">
+          <details class="card"><summary><strong>What happens if I forget my master password?</strong></summary>
+            <p class="lead">For maximum privacy, there is no backdoor. Enable a recovery key and store it safely offline.</p>
+          </details>
+          <details class="card"><summary><strong>Can I sync across devices?</strong></summary>
+            <p class="lead">Yes — optional sync can be added later. Your vault stays encrypted end‑to‑end.</p>
+          </details>
+          <details class="card"><summary><strong>Is PassOp open source?</strong></summary>
+            <p class="lead">You can expose parts of PassOp as open source or keep it private — this template is ready either way.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap">
+      <div>© <span id="year"></span> PassOp. All rights reserved.</div>
+      <div>Built with ❤️ for security‑minded people.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const btn = document.getElementById('menuBtn');
+    btn?.addEventListener('click', ()=>{
+      const expanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!expanded));
+      document.body.classList.toggle('mobile-open');
+    });
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

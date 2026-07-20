@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passop</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(-45deg, #4a90e2, #50c9c3, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 90%;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: glow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                text-shadow: 0 0 8px #fff, 0 0 20px #4a90e2, 0 0 40px #4a90e2;
+            }
+            50% {
+                text-shadow: 0 0 12px #fff, 0 0 25px #50c9c3, 0 0 50px #50c9c3;
+            }
+        }
+
+        p {
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px 20px;
+            width: 120px;
+            text-align: center;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #4a90e2;
+            padding: 16px 30px;
+            border-radius: 12px;
+            font-size: clamp(1rem, 4vw, 1.3rem);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 250px;
+        }
+
+        button:hover {
+            background: #4a90e2;
+            color: white;
+            box-shadow: 0 6px 20px rgba(74, 144, 226, 0.7);
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 500px) {
+            .glass-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <h1>Passop</h1>
+        <p>
+            Passop is your secure digital vault for storing and managing passwords effortlessly. 
+            With end-to-end encryption, cross-device sync, and one-click autofill, 
+            you can keep your online life safe while saving time. 
+            Say goodbye to forgotten passwords — Passop remembers them for you.
+        </p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-title">Secure</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Fast</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">💸</div>
+                <div class="feature-title">Free</div>
+            </div>
+        </div>
+
+        <button onclick="window.location.href='http://localhost:5173/'">
+            🚀 Get Started
+        </button>
+    </div>
+</body>
+</html>
